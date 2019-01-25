@@ -90,8 +90,8 @@ def random_walk_restart(nx_graph, start_node, walk_length, restart_prob):
 
 if __name__ == '__main__':
      # logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
-     G_dynamic = load_dynamic_graphs('../data/dblp/dblp_dyn_graphs.pkl')
-     node_label_dict = load_any_obj(path='../data/dblp/dblp_node_label_dict.pkl') # ground truth
+     G_dynamic = load_dynamic_graphs('../data/cora/cora_dyn_graphs.pkl')
+     node_label_dict = load_any_obj(path='../data/cora/cora_node_label_dict.pkl') # ground truth
 
      '''
      # retrieve most k similar nodes -> paper titles

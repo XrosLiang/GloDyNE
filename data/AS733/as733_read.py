@@ -29,7 +29,7 @@ def string_2_date(date_str):
     return date
 
 
-def generate_dynamic_graph(start_date = '19991009', time_step_number = 10, stop_at_irregular_interval = False):
+def generate_dynamic_graph(start_date = '19991009', time_step_number = 5, stop_at_irregular_interval = False):
     """
     earlist date is 19971108
     last date is 20000102
