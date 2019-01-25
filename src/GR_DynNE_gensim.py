@@ -43,7 +43,7 @@ def most_affected_nodes(graph_t0, graph_t1, reservoir_dict=None, update_threshol
      #     node_update_list = list(set(node_affected) - set(node_del))
           
      # method 2: m most affected nodes in G1 based on (# of affected time on a node)/(its node degree)
-     node_update_list = node_add # newly added (unseen) nodes mush be to update
+     node_update_list = node_add.copy() # newly added (unseen) nodes mush be to update
      exist_node_affected = list(set(node_affected) - set(node_del) - set(node_add))  # affected nodes are in both G0 and G1
      for node in exist_node_affected:
           nbrs_set1 = set(nx.neighbors(G=G1, n=node))
