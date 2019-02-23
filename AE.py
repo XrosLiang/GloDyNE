@@ -35,19 +35,22 @@ def static_AE(file_location, dim_emb = 128):
     embs = []
     t1 = time()
     all_emb_dicts = []
+    all_time = []
     # ae static
     for temp_var in range(len(networks)):
         emb, _ = embedding.learn_embeddings(networks[temp_var])
+        all_time.append(_)
         emb_dict = prep_embeddings(networks[temp_var], emb)
         all_emb_dicts.append(emb_dict)
         embs.append(emb)#it is numpy
 
-    save_embedding_result(embs)
+    save_any_obj(all_emb_dicts,path='static_AE_embedding.pkl')
+    save_any_obj(all_time,path='static_AE_time.pkl')
 
     print(embedding._method_name + ':\n\tTraining time: %f' % (time() - t1))
 
 
-def save_embedding_result(obj, path='static_AE_embedding.data'):
+def save_any_obj(obj, path='obj.pkl'):
     with open(path, 'wb') as f:
         pickle.dump(obj, f, protocol=pickle.HIGHEST_PROTOCOL)
 
