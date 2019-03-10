@@ -17,7 +17,7 @@ def get_node_ID_across_graphs(nx_graphs):
     return node_union
 
 
-def TNE_single_graph(nx_graph, input_name='', graph_count=0):
+def single_graph(nx_graph, input_name='', graph_count=0):
     if input_name != '':
         output_location = input_name + '_DynamicTriad_prep/'
     else:
@@ -32,21 +32,18 @@ def TNE_single_graph(nx_graph, input_name='', graph_count=0):
     all_nodes = list(nx_graph.nodes)
     all_nodes.sort()
     for i in range(len(nodes)):
-        line += TNE_graph_line(i, nx_graph, all_nodes)
+        line += graph_line(i, nx_graph, all_nodes)
 
     f.write(line)
     f.close()
 
 
-def TNE_graph_line(index, nx_graph, all_nodes):
+def graph_line(index, nx_graph, all_nodes):
     neighbors = list(nx_graph.neighbors(all_nodes[index]))
-    replaced_neighbors = []
+    neighbors.sort()
+    line = all_nodes[index]
     for i in range(len(neighbors)):
-        replaced_neighbors.append(all_nodes.index(neighbors[i]))
-    replaced_neighbors.sort()
-    line = str(index)
-    for i in range(len(replaced_neighbors)):
-        line += ' ' + str(int(replaced_neighbors[i])) + ' ' + '1.0'
+        line += ' ' + str(int(neighbors[i])) + ' ' + '1.0'
     line += '\n'
     return line
 
@@ -79,7 +76,7 @@ def DynamicTriad_prep(path='AS733_dyn_graphs.pkl', input_name='', add_all_nodes=
     for i in range(len(nx_graphs)):
         print("generating input:", i + 1, "out of ", len(nx_graphs))
 
-        TNE_single_graph(nx_graphs[i], graph_count=i)
+        single_graph(nx_graphs[i], graph_count=i)
 
 
 if __name__ == '__main__':
